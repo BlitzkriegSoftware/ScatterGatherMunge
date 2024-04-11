@@ -109,5 +109,16 @@ namespace StuartWilliams.Lib.ScatterGatherMunge.Models
             }
             #endregion
         }
+
+        /// <summary>
+        /// To String
+        /// </summary>
+        /// <returns>JSON</returns>
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
+        }
+
+
     }
 }

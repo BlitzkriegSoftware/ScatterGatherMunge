@@ -62,10 +62,10 @@ namespace StuartWilliams.Lib.ScatterGatherMunge.Tests
                 new Lib.ScatterGatherMunge.Models.MessageHistoryItem()
                 {
                      Text = "Test Done",
-                      Kind = Enums.MessageFiniteStateKind.Completed,
-                       Stamp = DateTime.UtcNow
+                     Kind = Enums.MessageFiniteStateKind.Completed,
+                     Stamp = DateTime.UtcNow
                 },
-                                new Lib.ScatterGatherMunge.Models.MessageHistoryItem()
+                new Lib.ScatterGatherMunge.Models.MessageHistoryItem()
                 {
                      Text = "Test In",
                      Kind = Enums.MessageFiniteStateKind.New,
@@ -73,6 +73,8 @@ namespace StuartWilliams.Lib.ScatterGatherMunge.Tests
                 },
             };
             Assert.IsTrue(model.History.Any());
+
+            _testcontext?.WriteLine(model.ToString());
         }
 
         [TestMethod]

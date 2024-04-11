@@ -14,6 +14,33 @@
             Attribute: Indicates that this <c>Property</c> is expected in the message metadata
             </summary>
         </member>
+        <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Calculators.RetryCalculator">
+            <summary>
+            Calculator: Retries
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.Lib.ScatterGatherMunge.Calculators.RetryCalculator.BaseSeconds">
+            <summary>
+            Base Seconds
+            </summary>
+        </member>
+        <member name="M:StuartWilliams.Lib.ScatterGatherMunge.Calculators.RetryCalculator.JitteredBackoffSeconds(System.Int32,System.Int32)">
+            <summary>
+            Calculate the minimum number of seconds to wait before trying to reprocess
+            </summary>
+            <param name="retries">(sic)</param>
+            <param name="baseSeconds">Base Seconds</param>
+            <returns>Minimum Seconds To Wait</returns>
+        </member>
+        <member name="M:StuartWilliams.Lib.ScatterGatherMunge.Calculators.RetryCalculator.EarliestDequeueDate(System.Nullable{System.DateTime},System.Int32,System.Int32)">
+            <summary>
+            Compute Earliest Possible Date/Time
+            </summary>
+            <param name="baseDate">Base Date</param>
+            <param name="retries">(sic)</param>
+            <param name="baseSeconds">Multiplier</param>
+            <returns>DateTime</returns>
+        </member>
         <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageFiniteStateKind">
             <summary>
             Enum: Message Finite State
@@ -115,6 +142,12 @@
             </summary>
             <param name="validationErrors">Validation Errors</param>
             <returns>True if ok</returns>
+        </member>
+        <member name="M:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageBase.ToString">
+            <summary>
+            To String
+            </summary>
+            <returns>JSON</returns>
         </member>
         <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageHistoryItem">
             <summary>
