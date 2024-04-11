@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{FD3DD1D6-A983-4388-A722-C37E2A066D7A}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		Circle-Me.ico = Circle-Me.ico
+		Circle-Me.png = Circle-Me.png
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StuartWilliams.Lib.ScatterGatherMunge", "StuartWilliams.Lib.ScatterGatherMunge\StuartWilliams.Lib.ScatterGatherMunge.csproj", "{2E676AB5-D4DF-4018-8BF2-B4B7D8A41D88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StuartWilliams.Lib.ScatterGatherMunge.Tests", "StuartWilliams.Lib.ScatterGatherMunge.Tests\StuartWilliams.Lib.ScatterGatherMunge.Tests.csproj", "{E7C14CF1-29B6-4426-BDF3-A0C6FD330CD4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E676AB5-D4DF-4018-8BF2-B4B7D8A41D88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E676AB5-D4DF-4018-8BF2-B4B7D8A41D88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E676AB5-D4DF-4018-8BF2-B4B7D8A41D88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E676AB5-D4DF-4018-8BF2-B4B7D8A41D88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7C14CF1-29B6-4426-BDF3-A0C6FD330CD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7C14CF1-29B6-4426-BDF3-A0C6FD330CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7C14CF1-29B6-4426-BDF3-A0C6FD330CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7C14CF1-29B6-4426-BDF3-A0C6FD330CD4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A7EA873D-E162-4134-9AB4-7C8AA843600D}
+	EndGlobalSection
+EndGlobal

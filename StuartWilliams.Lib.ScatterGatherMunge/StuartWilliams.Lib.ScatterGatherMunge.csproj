@@ -1,0 +1,72 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<LangVersion>11.0</LangVersion>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<ApplicationIcon>Circle-Me.ico</ApplicationIcon>
+	</PropertyGroup>
+	
+	<PropertyGroup>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DocumentationFile>.\StuartWilliams.Lib.ScatterGatherMunge.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Version>1.0.0</Version>
+		<InformationalVersion>1.0.0</InformationalVersion>
+	</PropertyGroup>
+	
+	<PropertyGroup>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>StuartWilliams.Lib.ScatterGatherMunge</Title>
+		<Authors>Stuart Williams</Authors>
+		<Description>A Library to support SGM</Description>
+		<Copyright>(c) 2024 Stuart Williams</Copyright>
+		<PackageProjectUrl>https://github.com/BlitzkriegSoftware/ScatterGatherMunge</PackageProjectUrl>
+		<PackageIcon>Circle-Me.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/BlitzkriegSoftware/ScatterGatherMunge</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>Scatter; Gather; Munge</PackageTags>
+		<PackageReleaseNotes>1.x.x Initial Version</PackageReleaseNotes>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DebugType>embedded</DebugType>
+		<IsTrimmable>False</IsTrimmable>
+		<WarningLevel>7</WarningLevel>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DebugType>embedded</DebugType>
+		<IsTrimmable>False</IsTrimmable>
+		<WarningLevel>7</WarningLevel>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Include="Circle-Me.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\Circle-Me.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+
+</Project>

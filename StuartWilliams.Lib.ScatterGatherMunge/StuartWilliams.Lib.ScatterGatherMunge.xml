@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StuartWilliams.Lib.ScatterGatherMunge</name>
+    </assembly>
+    <members>
+        <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Attribute.MessageEnrichmentAttribute">
+            <summary>
+            Attribute: Indicates the system enriched fields
+            </summary>
+        </member>
+        <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Attribute.MessageMetadataAttribute">
+            <summary>
+            Attribute: Indicates that this <c>Property</c> is expected in the message metadata
+            </summary>
+        </member>
+        <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageFiniteStateKind">
+            <summary>
+            Enum: Message Finite State
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageFiniteStateKind.New">
+            <summary>
+            Default
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageFiniteStateKind.Requeued">
+            <summary>
+            Requeued
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageFiniteStateKind.Completed">
+            <summary>
+            Completed
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageFiniteStateKind.BadFormat">
+            <summary>
+            Bad Format
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageFiniteStateKind.Rejected">
+            <summary>
+            Rejected (dead letter)
+            </summary>
+        </member>
+        <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageVersionKind">
+            <summary>
+            Enum: Message Version
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageVersionKind.None">
+            <summary>
+            Invalid
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageVersionKind.V1">
+            <summary>
+            V1
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageVersionKind.V2">
+            <summary>
+            V2
+            </summary>
+        </member>
+        <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageBase">
+            <summary>
+            Base: Message
+            <para>
+            Properties from message engine e.g., Azure Service Bus or RabbitMQ 
+            <list type="bullet">
+            <item>Unique Message Id</item>
+            <item>Received UTC DateTime</item>
+            </list>
+            </para>
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageBase.Version">
+            <summary>
+            Message Version
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageBase.MessageId">
+            <summary>
+            Unique Message Id
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageBase.MessageDateStamp">
+            <summary>
+            Date Time of the Message
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageBase.RetryCount">
+            <summary>
+            Enrichmement: Retry Count
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageBase.History">
+            <summary>
+            History
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageBase.MessageData">
+            <summary>
+            Message Data
+            <para>
+            Note: if you do not need unique keys or fast lookups, this could be <c><![CDATA[List<KeyValuePair>]]></c>
+            </para>
+            </summary>
+        </member>
+        <member name="M:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageBase.IsValid(System.Collections.Generic.List{System.ComponentModel.DataAnnotations.ValidationResult}@)">
+            <summary>
+            Check validity of message
+            </summary>
+            <param name="validationErrors">Validation Errors</param>
+            <returns>True if ok</returns>
+        </member>
+        <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageHistoryItem">
+            <summary>
+            Model: Message History Item
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageHistoryItem.Stamp">
+            <summary>
+            When
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageHistoryItem.Kind">
+            <summary>
+            What
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageHistoryItem.Text">
+            <summary>
+            How
+            </summary>
+        </member>
+    </members>
+</doc>
