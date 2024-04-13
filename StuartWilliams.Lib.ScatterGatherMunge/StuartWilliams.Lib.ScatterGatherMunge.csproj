@@ -47,6 +47,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Content Remove="C:\Users\spook\.nuget\packages\blitzkriegsoftware.securerandomlibrary\1.0.9\contentFiles\any\netstandard2.1\BlitzkriegSoftware.SecureRandomLibrary.md" />
+	  <Content Remove="C:\Users\spook\.nuget\packages\blitzkriegsoftware.securerandomlibrary\1.0.9\contentFiles\any\netstandard2.1\BlitzkriegSoftware.SecureRandomLibrary.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Content Include="Circle-Me.ico" />
 	</ItemGroup>
 

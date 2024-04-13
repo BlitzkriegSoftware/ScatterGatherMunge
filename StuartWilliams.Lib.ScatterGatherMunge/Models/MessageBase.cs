@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace StuartWilliams.Lib.ScatterGatherMunge.Models
 {
+
     /// <summary>
     /// Base: Message
     /// <para>
@@ -68,7 +69,7 @@ namespace StuartWilliams.Lib.ScatterGatherMunge.Models
         /// </summary>
         /// <param name="validationErrors">Validation Errors</param>
         /// <returns>True if ok</returns>
-        public bool IsValid(out List<ValidationResult> validationErrors)
+        public virtual bool IsValid(out List<ValidationResult> validationErrors)
         {
             #region "Validation Result Builder Data"
             var validContext = new ValidationContext(this);
@@ -118,7 +119,6 @@ namespace StuartWilliams.Lib.ScatterGatherMunge.Models
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
-
 
     }
 }
