@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StuartWilliams.Lib.ScatterGatherMunge.Attribute
+namespace StuartWilliams.Lib.ScatterGatherMunge.Attributes
 {
     /// <summary>
     /// Attribute: Indicates the system enriched fields

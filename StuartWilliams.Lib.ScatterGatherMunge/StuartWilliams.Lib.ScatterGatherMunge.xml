@@ -4,12 +4,12 @@
         <name>StuartWilliams.Lib.ScatterGatherMunge</name>
     </assembly>
     <members>
-        <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Attribute.MessageEnrichmentAttribute">
+        <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Attributes.MessageEnrichmentAttribute">
             <summary>
             Attribute: Indicates the system enriched fields
             </summary>
         </member>
-        <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Attribute.MessageMetadataAttribute">
+        <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Attributes.MessageMetadataAttribute">
             <summary>
             Attribute: Indicates that this <c>Property</c> is expected in the message metadata
             </summary>
@@ -90,6 +90,38 @@
             <summary>
             V2
             </summary>
+        </member>
+        <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Extensions.PropertyHelper`1">
+            <summary>
+            Used to Get Property Info
+            <para>
+            From: <![CDATA[https://stackoverflow.com/questions/2051065/check-if-property-has-attribute]]>
+            </para>
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:StuartWilliams.Lib.ScatterGatherMunge.Extensions.PropertyHelper`1.GetProperty``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Get a property for a class
+            <para>
+            <c>
+            <![CDATA[
+            var property = PropertyHelper<MyClass>.GetProperty(x => x.MyProperty);
+            ]]>
+            </c>
+            </para>
+            <para>
+            <c>
+            <![CDATA[
+            Attribute.IsDefined(property, typeof(MyPropertyAttribute));
+            ]]>
+            </c>
+            </para>
+            </summary>
+            <typeparam name="TValue">Type</typeparam>
+            <param name="selector">Func</param>
+            <returns>Property</returns>
+            <exception cref="T:System.InvalidOperationException">(sic)</exception>
         </member>
         <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageBase">
             <summary>

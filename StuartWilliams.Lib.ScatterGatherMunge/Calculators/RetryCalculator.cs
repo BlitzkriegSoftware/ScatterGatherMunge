@@ -29,7 +29,7 @@ namespace StuartWilliams.Lib.ScatterGatherMunge.Calculators
             var delay = 2^retries * baseSeconds;
             int jitterMax = (int)(delay * 0.10);
             int jitter = secureRandom.Next(0, jitterMax);
-            delay = delay + jitter;
+            delay += jitter;
             return delay;
         }
 

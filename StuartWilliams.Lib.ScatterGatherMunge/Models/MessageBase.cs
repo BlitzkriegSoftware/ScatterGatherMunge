@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using StuartWilliams.Lib.ScatterGatherMunge.Attribute;
+using StuartWilliams.Lib.ScatterGatherMunge.Attributes;
 using StuartWilliams.Lib.ScatterGatherMunge.Enums;
 using System;
 using System.Collections.Generic;
