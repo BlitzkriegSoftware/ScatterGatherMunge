@@ -78,6 +78,87 @@ namespace StuartWilliams.Lib.ScatterGatherMunge.Tests
         }
 
         [TestMethod]
+        public void TestMessage_2c()
+        {
+            var id = Guid.NewGuid().ToString();
+            var model = Helpers.MessageFactory.Make(id: null, history: null);
+            Assert.IsNotNull(model);
+            model.History = new()
+            {
+                new Lib.ScatterGatherMunge.Models.MessageHistoryItem()
+                {
+                     Text = "Test Done",
+                     Kind = Enums.MessageFiniteStateKind.Completed,
+                     Stamp = DateTime.UtcNow,
+                     Id = "Nope"
+                },
+                new Lib.ScatterGatherMunge.Models.MessageHistoryItem()
+                {
+                     Text = "Test In",
+                     Kind = Enums.MessageFiniteStateKind.New,
+                     Stamp = DateTime.UtcNow.AddMinutes(-30),
+                     Id = id
+                },
+                new Lib.ScatterGatherMunge.Models.MessageHistoryItem()
+                {
+                     Text = "Test In",
+                     Kind = Enums.MessageFiniteStateKind.New,
+                     Stamp = DateTime.UtcNow.AddMinutes(-60),
+                },
+            };
+            Assert.IsTrue(model.History.Any());
+
+            _testcontext?.WriteLine($"SubId: {id}\n{model.ToString()}");
+
+            if(!model.SubIdentityTryGet(out var subMessageId))
+            {
+                Assert.Fail("Should have id");
+            }
+
+            if(!subMessageId.Equals(id, StringComparison.OrdinalIgnoreCase))
+            {
+                Assert.Fail("Not right id");
+            }
+        }
+
+        [TestMethod]
+        public void TestMessage_2d()
+        {
+            var model = Helpers.MessageFactory.Make(id: null, history: null);
+            Assert.IsNotNull(model);
+            model.History = new()
+            {
+                new Lib.ScatterGatherMunge.Models.MessageHistoryItem()
+                {
+                     Text = "Test Done",
+                     Kind = Enums.MessageFiniteStateKind.Completed,
+                     Stamp = DateTime.UtcNow,
+                },
+                new Lib.ScatterGatherMunge.Models.MessageHistoryItem()
+                {
+                     Text = "Test In",
+                     Kind = Enums.MessageFiniteStateKind.New,
+                     Stamp = DateTime.UtcNow.AddMinutes(-30),
+                },
+                new Lib.ScatterGatherMunge.Models.MessageHistoryItem()
+                {
+                     Text = "Test In",
+                     Kind = Enums.MessageFiniteStateKind.New,
+                     Stamp = DateTime.UtcNow.AddMinutes(-60),
+                },
+            };
+            Assert.IsTrue(model.History.Any());
+
+            _testcontext?.WriteLine($"{model.ToString()}");
+
+            if (model.SubIdentityTryGet(out var subMessageId))
+            {
+                Assert.Fail("Should not have id");
+            }
+        }
+
+
+        [TestMethod]
         public void TestMessage_3()
         {
             var model = Helpers.MessageFactory.Make(id: null, history: null);

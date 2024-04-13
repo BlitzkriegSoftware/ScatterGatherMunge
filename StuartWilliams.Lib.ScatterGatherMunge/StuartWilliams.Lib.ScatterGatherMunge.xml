@@ -17,6 +17,7 @@
         <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Calculators.RetryCalculator">
             <summary>
             Calculator: Retries
+            <para>Uses a crptograpic random generator</para>
             </summary>
         </member>
         <member name="F:StuartWilliams.Lib.ScatterGatherMunge.Calculators.RetryCalculator.BaseSeconds">
@@ -38,8 +39,8 @@
             </summary>
             <param name="baseDate">Base Date</param>
             <param name="retries">(sic)</param>
-            <param name="baseSeconds">Multiplier</param>
-            <returns>DateTime</returns>
+            <param name="baseSeconds">Base Seconds</param>
+            <returns>Minumum DateTime Message Can Be Reprocessed</returns>
         </member>
         <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageFiniteStateKind">
             <summary>
@@ -56,19 +57,19 @@
             Requeued
             </summary>
         </member>
-        <member name="F:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageFiniteStateKind.Completed">
+        <member name="F:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageFiniteStateKind.Cloned">
             <summary>
-            Completed
+            Cloned
             </summary>
         </member>
-        <member name="F:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageFiniteStateKind.BadFormat">
+        <member name="F:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageFiniteStateKind.Completed">
             <summary>
-            Bad Format
+            Completed, success
             </summary>
         </member>
         <member name="F:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageFiniteStateKind.Rejected">
             <summary>
-            Rejected (dead letter)
+            Rejected (dead letter), bad format or bad data
             </summary>
         </member>
         <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageVersionKind">
@@ -175,6 +176,13 @@
             <param name="validationErrors">Validation Errors</param>
             <returns>True if ok</returns>
         </member>
+        <member name="M:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageBase.SubIdentityTryGet(System.String@)">
+            <summary>
+            Get the last Sub-Message Id
+            </summary>
+            <param name="subMessageId">Latest Sub-Message-Id</param>
+            <returns>True if so</returns>
+        </member>
         <member name="M:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageBase.ToString">
             <summary>
             To String
@@ -188,17 +196,22 @@
         </member>
         <member name="P:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageHistoryItem.Stamp">
             <summary>
-            When
+            When: UTC DateTime Stamp
             </summary>
         </member>
         <member name="P:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageHistoryItem.Kind">
             <summary>
-            What
+            Why: State
             </summary>
         </member>
         <member name="P:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageHistoryItem.Text">
             <summary>
-            How
+            How: Reason Message
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageHistoryItem.Id">
+            <summary>
+            What: SubId (for clone)
             </summary>
         </member>
     </members>

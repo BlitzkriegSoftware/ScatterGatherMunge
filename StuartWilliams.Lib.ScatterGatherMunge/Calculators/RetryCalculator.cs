@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StuartWilliams.Lib.ScatterGatherMunge.Calculators
 {
     /// <summary>
     /// Calculator: Retries
+    /// <para>Uses a crptograpic random generator</para>
     /// </summary>
     public static class RetryCalculator
     {
@@ -38,8 +35,8 @@ namespace StuartWilliams.Lib.ScatterGatherMunge.Calculators
         /// </summary>
         /// <param name="baseDate">Base Date</param>
         /// <param name="retries">(sic)</param>
-        /// <param name="baseSeconds">Multiplier</param>
-        /// <returns>DateTime</returns>
+        /// <param name="baseSeconds">Base Seconds</param>
+        /// <returns>Minumum DateTime Message Can Be Reprocessed</returns>
         public static DateTime EarliestDequeueDate(DateTime? baseDate, int retries, int baseSeconds = BaseSeconds)
         {
             baseDate ??= DateTime.UtcNow;

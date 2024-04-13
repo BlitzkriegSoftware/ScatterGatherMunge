@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
+
 using StuartWilliams.Lib.ScatterGatherMunge.Attributes;
 using StuartWilliams.Lib.ScatterGatherMunge.Enums;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -109,6 +111,34 @@ namespace StuartWilliams.Lib.ScatterGatherMunge.Models
                 return false;
             }
             #endregion
+        }
+
+        /// <summary>
+        /// Get the last Sub-Message Id
+        /// </summary>
+        /// <param name="subMessageId">Latest Sub-Message-Id</param>
+        /// <returns>True if so</returns>
+        public bool SubIdentityTryGet(out string subMessageId)
+        {
+            subMessageId = string.Empty;
+
+            if((this.History != null) && (this.History.Count > 0))
+            {
+                DateTime early = DateTime.MinValue;
+                foreach(var h in this.History)
+                {
+                    if(h.Stamp > early)
+                    {
+                        if (!string.IsNullOrWhiteSpace(h.Id))
+                        {
+                            subMessageId = h.Id;
+                        }
+                    }
+                }
+                return (string.IsNullOrWhiteSpace(subMessageId)) ? false : true;
+            }
+
+            return false;
         }
 
         /// <summary>

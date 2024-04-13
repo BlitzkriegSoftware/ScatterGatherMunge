@@ -1,5 +1,6 @@
 ﻿namespace StuartWilliams.Lib.ScatterGatherMunge.Enums
 {
+
     /// <summary>
     /// Enum: Message Version
     /// </summary>
@@ -18,4 +19,5 @@
         /// </summary>
         V2 = 2,
     }
+
 }

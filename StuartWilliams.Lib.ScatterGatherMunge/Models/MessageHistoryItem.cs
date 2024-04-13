@@ -15,18 +15,24 @@ namespace StuartWilliams.Lib.ScatterGatherMunge.Models
     {
 
         /// <summary>
-        /// When
+        /// When: UTC DateTime Stamp
         /// </summary>
         public DateTime Stamp { get; set; } = DateTime.UtcNow;
 
         /// <summary>
-        /// What
+        /// Why: State
         /// </summary>
         public MessageFiniteStateKind Kind { get; set; } = MessageFiniteStateKind.New;
 
         /// <summary>
-        /// How
+        /// How: Reason Message
         /// </summary>
         public string Text { get; set; } = string.Empty;
+
+        /// <summary>
+        /// What: SubId (for clone)
+        /// </summary>
+        public string Id { get; set; } = string.Empty;
+
     }
 }

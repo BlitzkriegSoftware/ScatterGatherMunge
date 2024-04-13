@@ -22,16 +22,16 @@ namespace StuartWilliams.Lib.ScatterGatherMunge.Enums
         /// </summary>
         Requeued = 1,
         /// <summary>
-        /// Completed
+        /// Cloned
         /// </summary>
-        Completed = 2,
+        Cloned = 8,
         /// <summary>
-        /// Bad Format
+        /// Completed, success
         /// </summary>
-        BadFormat = 16,
+        Completed = 64,
         /// <summary>
-        /// Rejected (dead letter)
+        /// Rejected (dead letter), bad format or bad data
         /// </summary>
-        Rejected = 32,
+        Rejected = 128,
     }
 }
