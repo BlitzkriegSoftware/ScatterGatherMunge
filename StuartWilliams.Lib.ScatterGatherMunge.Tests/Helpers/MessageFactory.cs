@@ -1,4 +1,4 @@
-﻿using StuartWilliams.Lib.ScatterGatherMunge.Models;
+﻿using StuartWilliams.Lib.ScatterGatherMunge.Enums;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -11,7 +11,7 @@ namespace StuartWilliams.Lib.ScatterGatherMunge.Tests.Helpers
     [ExcludeFromCodeCoverage]
     public static class MessageFactory
     {
-        public static Models.TestMessage Make(Guid? id, List<MessageHistoryItem>? history)
+        public static Models.TestMessage Make(Guid? id, List<StuartWilliams.Lib.ScatterGatherMunge.Models.MessageHistoryItem>? history)
         {
             id ??= Guid.NewGuid();
             history ??= [];
@@ -25,7 +25,7 @@ namespace StuartWilliams.Lib.ScatterGatherMunge.Tests.Helpers
                 },
                 MessageId = id.ToString(),
                 MessageDateStamp = DateTime.UtcNow,
-                Version = Enums.MessageVersionKind.V1,
+                Version = MessageVersionKind.V1,
                 History = history
             };
 

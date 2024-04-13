@@ -13,14 +13,17 @@ namespace StuartWilliams.Lib.ScatterGatherMunge.Models
     /// </summary>
     public class MessageHistoryItem
     {
+
         /// <summary>
         /// When
         /// </summary>
         public DateTime Stamp { get; set; } = DateTime.UtcNow;
+
         /// <summary>
         /// What
         /// </summary>
         public MessageFiniteStateKind Kind { get; set; } = MessageFiniteStateKind.New;
+
         /// <summary>
         /// How
         /// </summary>
