@@ -6,12 +6,18 @@
     <members>
         <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Attributes.MessageEnrichmentAttribute">
             <summary>
-            Attribute: Indicates the system enriched fields
+            Attribute: Indicates the enriched fields e.g., fields updated during processing
             </summary>
         </member>
-        <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Attributes.MessageMetadataAttribute">
+        <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Attributes.MessageInjectedPropertyAttribute">
+            <summary>
+            This value comes from the Queueing System
+            </summary>
+        </member>
+        <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Attributes.MessagePromotedPropertyAttribute">
             <summary>
             Attribute: Indicates that this <c>Property</c> is expected in the message metadata
+            <para>And is in the header e.g, <c>promoted</c> for subscription rules</para>
             </summary>
         </member>
         <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Calculators.RetryCalculator">
@@ -42,6 +48,16 @@
             <param name="baseSeconds">Base Seconds</param>
             <returns>Minumum DateTime Message Can Be Reprocessed</returns>
         </member>
+        <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Calculators.SecureRandomCalculator">
+            <summary>
+            Calculator: Better Random Numbers
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.Lib.ScatterGatherMunge.Calculators.SecureRandomCalculator.SecureRandom">
+            <summary>
+            Random Number Generator
+            </summary>
+        </member>
         <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageFiniteStateKind">
             <summary>
             Enum: Message Finite State
@@ -70,6 +86,39 @@
         <member name="F:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageFiniteStateKind.Rejected">
             <summary>
             Rejected (dead letter), bad format or bad data
+            </summary>
+        </member>
+        <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageKind">
+            <summary>
+            Kind: Message
+            <para>
+            Note in general this should be a <c><![CDATA[[Flags]]]></c> enumeration
+            </para>
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageKind.Unknown">
+            <summary>
+            Unknown (noop)
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageKind.Metric">
+            <summary>
+            Metric(s)
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageKind.ErrorReport">
+            <summary>
+            Error Report
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageKind.Diagnostics">
+            <summary>
+            Diagnostics with or without an error report
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageKind.ClientConfiguration">
+            <summary>
+            Client Configuration 
             </summary>
         </member>
         <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Enums.MessageVersionKind">
@@ -127,13 +176,6 @@
         <member name="T:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageBase">
             <summary>
             Base: Message
-            <para>
-            Properties from message engine e.g., Azure Service Bus or RabbitMQ 
-            <list type="bullet">
-            <item>Unique Message Id</item>
-            <item>Received UTC DateTime</item>
-            </list>
-            </para>
             </summary>
         </member>
         <member name="P:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageBase.Version">
@@ -151,6 +193,11 @@
             Date Time of the Message
             </summary>
         </member>
+        <member name="P:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageBase.MessageKind">
+            <summary>
+            Message Kind
+            </summary>
+        </member>
         <member name="P:StuartWilliams.Lib.ScatterGatherMunge.Models.MessageBase.RetryCount">
             <summary>
             Enrichmement: Retry Count
@@ -166,6 +213,9 @@
             Message Data
             <para>
             Note: if you do not need unique keys or fast lookups, this could be <c><![CDATA[List<KeyValuePair>]]></c>
+            </para>
+            <para>
+            This could also be a more structured data structure, but that comes with additional complexity
             </para>
             </summary>
         </member>

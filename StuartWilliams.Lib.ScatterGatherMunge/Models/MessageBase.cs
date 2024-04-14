@@ -12,13 +12,6 @@ namespace StuartWilliams.Lib.ScatterGatherMunge.Models
 
     /// <summary>
     /// Base: Message
-    /// <para>
-    /// Properties from message engine e.g., Azure Service Bus or RabbitMQ 
-    /// <list type="bullet">
-    /// <item>Unique Message Id</item>
-    /// <item>Received UTC DateTime</item>
-    /// </list>
-    /// </para>
     /// </summary>
     public class MessageBase
     {
@@ -26,7 +19,8 @@ namespace StuartWilliams.Lib.ScatterGatherMunge.Models
         /// Message Version
         /// </summary>
         [Required]
-        [MessageMetadata]
+        [MessagePromotedProperty]
+        [MessageInjectedProperty]
         public MessageVersionKind Version { get; set; } = MessageVersionKind.V1;
 
         /// <summary>
@@ -35,20 +29,30 @@ namespace StuartWilliams.Lib.ScatterGatherMunge.Models
         [Required]
         [MinLength(8)]
         [MaxLength(72)]
-        [MessageMetadata]
+        [MessagePromotedProperty]
+        [MessageInjectedProperty]
         public string MessageId {get;set;}
 
         /// <summary>
         /// Date Time of the Message
         /// </summary>
         [Required]
-        [MessageMetadata]
+        [MessagePromotedProperty]
+        [MessageInjectedProperty]
         public DateTime MessageDateStamp { get; set; } = DateTime.UtcNow;
+
+        /// <summary>
+        /// Message Kind
+        /// </summary>
+        [Required]
+        [MessagePromotedProperty]
+        public Enums.MessageKind MessageKind { get; set; } = MessageKind.Unknown;
 
         /// <summary>
         /// Enrichmement: Retry Count
         /// </summary>
         [MessageEnrichment]
+        [MessagePromotedProperty]
         public int RetryCount { get; set; } = 0;
 
         /// <summary>
@@ -62,8 +66,12 @@ namespace StuartWilliams.Lib.ScatterGatherMunge.Models
         /// <para>
         /// Note: if you do not need unique keys or fast lookups, this could be <c><![CDATA[List<KeyValuePair>]]></c>
         /// </para>
+        /// <para>
+        /// This could also be a more structured data structure, but that comes with additional complexity
+        /// </para>
         /// </summary>
         [Required]
+        [MessageEnrichment]
         public Dictionary<string, object> MessageData { get; set; } = new();
 
         /// <summary>

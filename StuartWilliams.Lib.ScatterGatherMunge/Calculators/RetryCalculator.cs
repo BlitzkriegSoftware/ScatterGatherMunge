@@ -8,7 +8,6 @@ namespace StuartWilliams.Lib.ScatterGatherMunge.Calculators
     /// </summary>
     public static class RetryCalculator
     {
-        private static readonly BlitzkriegSoftware.SecureRandomLibrary.SecureRandom secureRandom = new();
 
         /// <summary>
         /// Base Seconds
@@ -25,7 +24,7 @@ namespace StuartWilliams.Lib.ScatterGatherMunge.Calculators
         {
             var delay = 2^retries * baseSeconds;
             int jitterMax = (int)(delay * 0.10);
-            int jitter = secureRandom.Next(0, jitterMax);
+            int jitter = Calculators.SecureRandomCalculator.SecureRandom.Next(0, jitterMax);
             delay += jitter;
             return delay;
         }

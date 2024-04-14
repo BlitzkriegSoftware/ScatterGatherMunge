@@ -15,6 +15,14 @@ namespace StuartWilliams.Lib.ScatterGatherMunge.Tests.Helpers
         {
             id ??= Guid.NewGuid();
             history ??= [];
+            MessageKind kind = MessageKind.Unknown;
+            foreach(Enums.MessageKind e in Enum.GetValues(typeof(Enums.MessageKind)))
+            {
+                if(Calculators.SecureRandomCalculator.SecureRandom.Next(0,9) > 5)
+                {
+                    kind = kind | e;
+                }
+            }
             return new Models.TestMessage()
             {
                 Misc = "blah",
@@ -26,6 +34,7 @@ namespace StuartWilliams.Lib.ScatterGatherMunge.Tests.Helpers
                 MessageId = id.ToString(),
                 MessageDateStamp = DateTime.UtcNow,
                 Version = MessageVersionKind.V1,
+                MessageKind = kind,
                 History = history
             };
 
