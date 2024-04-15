@@ -3,7 +3,8 @@
 #>
 $valkeyPORT=6379
 $valkeyNAME="d-valkey"
-#docker pull codingpaws/valkey:latest
+$valkeyIMAGE="codingpaws/valkey"
 docker stop "${valkeyNAME}" 2>&1 | out-null
 docker rm "${valkeyNAME}" 2>&1 | out-null
-docker run --name ${valkeyNAME} -d -p ${valkeyPORT}:${valkeyPORT} codingpaws/valkey
+Write-Output "${valkeyNAME}, Image: ${valkeyIMAGE}, Port: ${valkeyPORT}"
+docker run --name ${valkeyNAME} -d -p ${valkeyPORT}:${valkeyPORT} ${valkeyIMAGE}
