@@ -8,13 +8,31 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{FD3DD1D6
 		.gitignore = .gitignore
 		Circle-Me.ico = Circle-Me.ico
 		Circle-Me.png = Circle-Me.png
+		demoConfig.json = demoConfig.json
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StuartWilliams.Lib.ScatterGatherMunge", "StuartWilliams.Lib.ScatterGatherMunge\StuartWilliams.Lib.ScatterGatherMunge.csproj", "{2E676AB5-D4DF-4018-8BF2-B4B7D8A41D88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StuartWilliams.ScatterGatherMunge.Producer", "StuartWilliams.ScatterGatherMunge.Producer\StuartWilliams.ScatterGatherMunge.Producer.csproj", "{0934353E-F78F-4333-9C77-1893FAB5D64D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StuartWilliams.Lib.ScatterGatherMunge.Tests", "StuartWilliams.Lib.ScatterGatherMunge.Tests\StuartWilliams.Lib.ScatterGatherMunge.Tests.csproj", "{E7C14CF1-29B6-4426-BDF3-A0C6FD330CD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StuartWilliams.ScatterGatherMunge.Consumer", "StuartWilliams.ScatterGatherMunge.Consumer\StuartWilliams.ScatterGatherMunge.Consumer.csproj", "{CFBDC3BC-E706-416B-8699-02B5C1E2E824}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{C0FA179E-C082-4FE3-BD88-0C779B3C7DC0}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\rabbitmqadmin.py = scripts\rabbitmqadmin.py
+		scripts\rabbitmq_peek.ps1 = scripts\rabbitmq_peek.ps1
+		scripts\rabbitmq_start.ps1 = scripts\rabbitmq_start.ps1
+		scripts\rabbitmq_stop.ps1 = scripts\rabbitmq_stop.ps1
+		scripts\rabbitmq_web.ps1 = scripts\rabbitmq_web.ps1
+		scripts\start.ps1 = scripts\start.ps1
+		scripts\stop.ps1 = scripts\stop.ps1
+		scripts\valkey_start.ps1 = scripts\valkey_start.ps1
+		scripts\valkey_stop.ps1 = scripts\valkey_stop.ps1
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StuartWilliams.ScatterGatherMunge.Lib", "StuartWilliams.ScatterGatherMunge.Lib\StuartWilliams.ScatterGatherMunge.Lib.csproj", "{C0D4AE81-10CD-42F5-9F27-76C4573B2A86}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StuartWilliams.ScatterGatherMunge.Lib.Tests", "StuartWilliams.ScatterGatherMunge.Lib.Tests\StuartWilliams.ScatterGatherMunge.Lib.Tests.csproj", "{2FDEFBFA-B9A7-40B9-A526-A0E6404AD35F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,14 +40,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2E676AB5-D4DF-4018-8BF2-B4B7D8A41D88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2E676AB5-D4DF-4018-8BF2-B4B7D8A41D88}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2E676AB5-D4DF-4018-8BF2-B4B7D8A41D88}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2E676AB5-D4DF-4018-8BF2-B4B7D8A41D88}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E7C14CF1-29B6-4426-BDF3-A0C6FD330CD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E7C14CF1-29B6-4426-BDF3-A0C6FD330CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E7C14CF1-29B6-4426-BDF3-A0C6FD330CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E7C14CF1-29B6-4426-BDF3-A0C6FD330CD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0934353E-F78F-4333-9C77-1893FAB5D64D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0934353E-F78F-4333-9C77-1893FAB5D64D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0934353E-F78F-4333-9C77-1893FAB5D64D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0934353E-F78F-4333-9C77-1893FAB5D64D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFBDC3BC-E706-416B-8699-02B5C1E2E824}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFBDC3BC-E706-416B-8699-02B5C1E2E824}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFBDC3BC-E706-416B-8699-02B5C1E2E824}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFBDC3BC-E706-416B-8699-02B5C1E2E824}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0D4AE81-10CD-42F5-9F27-76C4573B2A86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0D4AE81-10CD-42F5-9F27-76C4573B2A86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0D4AE81-10CD-42F5-9F27-76C4573B2A86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0D4AE81-10CD-42F5-9F27-76C4573B2A86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FDEFBFA-B9A7-40B9-A526-A0E6404AD35F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FDEFBFA-B9A7-40B9-A526-A0E6404AD35F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FDEFBFA-B9A7-40B9-A526-A0E6404AD35F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FDEFBFA-B9A7-40B9-A526-A0E6404AD35F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

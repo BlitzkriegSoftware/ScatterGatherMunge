@@ -1,0 +1,576 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StuartWilliams.ScatterGatherMunge.Lib</name>
+    </assembly>
+    <members>
+        <member name="T:StuartWilliams.ScatterGatherMunge.Lib.Attributes.MessageEnrichmentAttribute">
+            <summary>
+            Attribute: Indicates the enriched fields e.g., fields updated during processing
+            </summary>
+        </member>
+        <member name="T:StuartWilliams.ScatterGatherMunge.Lib.Attributes.MessageInjectedPropertyAttribute">
+            <summary>
+            This value comes from the Queueing System
+            </summary>
+        </member>
+        <member name="T:StuartWilliams.ScatterGatherMunge.Lib.Attributes.MessagePromotedPropertyAttribute">
+            <summary>
+            Attribute: Indicates that this <c>Property</c> is expected in the message metadata
+            <para>And is in the header e.g, <c>promoted</c> for subscription rules</para>
+            </summary>
+        </member>
+        <member name="T:StuartWilliams.ScatterGatherMunge.Lib.Calculators.RetryCalculator">
+            <summary>
+            Calculator: Retries
+            <para>Uses a crptograpic random generator</para>
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Calculators.RetryCalculator.BaseSeconds">
+            <summary>
+            Base Seconds
+            </summary>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Calculators.RetryCalculator.JitteredBackoffSeconds(System.Int32,System.Int32)">
+            <summary>
+            Calculate the minimum number of seconds to wait before trying to reprocess
+            </summary>
+            <param name="retries">(sic)</param>
+            <param name="baseSeconds">Base Seconds</param>
+            <returns>Minimum Seconds To Wait</returns>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Calculators.RetryCalculator.EarliestDequeueDate(System.Nullable{System.DateTime},System.Int32,System.Int32)">
+            <summary>
+            Compute Earliest Possible Date/Time
+            </summary>
+            <param name="baseDate">Base Date</param>
+            <param name="retries">(sic)</param>
+            <param name="baseSeconds">Base Seconds</param>
+            <returns>Minumum DateTime Message Can Be Reprocessed</returns>
+        </member>
+        <member name="T:StuartWilliams.ScatterGatherMunge.Lib.Calculators.SecureRandomCalculator">
+            <summary>
+            Calculator: Better Random Numbers
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Calculators.SecureRandomCalculator.SecureRandom">
+            <summary>
+            Random Number Generator
+            </summary>
+        </member>
+        <member name="T:StuartWilliams.ScatterGatherMunge.Lib.Delegates.QueueMessageHandler">
+            <summary>
+            Delegate Queue item handler
+            </summary>
+            <param name="queueEngine">IQueueEngine</param>
+            <param name="logger">ILogger</param>
+            <param name="model">IModel</param>
+            <param name="ea">BasicDeliverEventArgs</param>
+        </member>
+        <member name="T:StuartWilliams.ScatterGatherMunge.Lib.Enums.MessageFiniteStateKind">
+            <summary>
+            Enum: Message Finite State
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Enums.MessageFiniteStateKind.New">
+            <summary>
+            Default
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Enums.MessageFiniteStateKind.Requeued">
+            <summary>
+            Requeued
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Enums.MessageFiniteStateKind.Cloned">
+            <summary>
+            Cloned
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Enums.MessageFiniteStateKind.Completed">
+            <summary>
+            Completed, success
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Enums.MessageFiniteStateKind.Rejected">
+            <summary>
+            Rejected (dead letter), bad format or bad data
+            </summary>
+        </member>
+        <member name="T:StuartWilliams.ScatterGatherMunge.Lib.Enums.MessageKind">
+            <summary>
+            Kind: Message
+            <para>
+            Note in general this should be a <c><![CDATA[[Flags]]]></c> enumeration
+            </para>
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Enums.MessageKind.Unknown">
+            <summary>
+            Unknown (noop)
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Enums.MessageKind.Metric">
+            <summary>
+            Metric(s)
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Enums.MessageKind.ErrorReport">
+            <summary>
+            Error Report
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Enums.MessageKind.Diagnostics">
+            <summary>
+            Diagnostics with or without an error report
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Enums.MessageKind.ClientConfiguration">
+            <summary>
+            Client Configuration 
+            </summary>
+        </member>
+        <member name="T:StuartWilliams.ScatterGatherMunge.Lib.Enums.MessageVersionKind">
+            <summary>
+            Enum: Message Version
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Enums.MessageVersionKind.None">
+            <summary>
+            Invalid
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Enums.MessageVersionKind.V1">
+            <summary>
+            V1
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Enums.MessageVersionKind.V2">
+            <summary>
+            V2
+            </summary>
+        </member>
+        <member name="T:StuartWilliams.ScatterGatherMunge.Lib.Enums.ReceivedMessageState">
+            <summary>
+            What is the state of the received message
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Enums.ReceivedMessageState.Unknown">
+            <summary>
+            Unknown
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Enums.ReceivedMessageState.SuccessfullyProcessed">
+            <summary>
+            Success
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Enums.ReceivedMessageState.UnsuccessfulProcessing">
+            <summary>
+            Unsuccessful
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Enums.ReceivedMessageState.MessageRejected">
+            <summary>
+            Bad message, rejected
+            </summary>
+        </member>
+        <member name="T:StuartWilliams.ScatterGatherMunge.Lib.Extensions.PropertyHelper`1">
+            <summary>
+            Used to Get Property Info
+            <para>
+            From: <![CDATA[https://stackoverflow.com/questions/2051065/check-if-property-has-attribute]]>
+            </para>
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Extensions.PropertyHelper`1.GetProperty``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Get a property for a class
+            <para>
+            <c>
+            <![CDATA[
+            var property = PropertyHelper<MyClass>.GetProperty(x => x.MyProperty);
+            ]]>
+            </c>
+            </para>
+            <para>
+            <c>
+            <![CDATA[
+            Attribute.IsDefined(property, typeof(MyPropertyAttribute));
+            ]]>
+            </c>
+            </para>
+            </summary>
+            <typeparam name="TValue">Type</typeparam>
+            <param name="selector">Func</param>
+            <returns>Property</returns>
+            <exception cref="T:System.InvalidOperationException">(sic)</exception>
+        </member>
+        <member name="T:StuartWilliams.ScatterGatherMunge.Lib.Interfaces.IQueueEngine">
+            <summary>
+            IQueue Engine
+            </summary>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Interfaces.IQueueEngine.Enqueue``1(``0,StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqInstanceConfiguration)">
+            <summary>
+            Enqueue a message of type T
+            </summary>
+            <typeparam name="T">Type</typeparam>
+            <param name="message">message</param>
+            <param name="queueConfiguration">(sic)</param>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Interfaces.IQueueEngine.SetupDequeueEvent(StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqInstanceConfiguration,StuartWilliams.ScatterGatherMunge.Lib.Delegates.QueueMessageHandler)">
+            <summary>
+            Get a message of type <c>IModel</c>
+            </summary>
+            <param name="queueConfiguration">(sic)</param>
+            <param name="handler">Handler to pass called back for each message</param>
+            <returns>IModel</returns>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Interfaces.IQueueEngine.SendResponse(RabbitMQ.Client.IModel,RabbitMQ.Client.Events.BasicDeliverEventArgs,StuartWilliams.ScatterGatherMunge.Lib.Enums.ReceivedMessageState)">
+            <summary>
+            Ack/Nack/Reject Message (must be called by the <c>QueueMessageHandler</c>
+            </summary>
+            <param name="model">IModel</param>
+            <param name="ea">BasicDeliverEventArgs</param>
+            <param name="state">ReceivedMessageState</param>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Interfaces.IQueueEngine.PurgeQueue(StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqInstanceConfiguration)">
+            <summary>
+            Delete all message in a queue (Purge)
+            </summary>
+            <param name="queueConfiguration">RabbitMqInstanceConfiguration</param>
+        </member>
+        <member name="T:StuartWilliams.ScatterGatherMunge.Lib.Models.MessageBase">
+            <summary>
+            Base: Message
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.MessageBase.Version">
+            <summary>
+            Message Version
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.MessageBase.MessageId">
+            <summary>
+            Unique Message Id
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.MessageBase.MessageDateStamp">
+            <summary>
+            Date Time of the Message
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.MessageBase.MessageKind">
+            <summary>
+            Message Kind
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.MessageBase.RetryCount">
+            <summary>
+            Enrichmement: Retry Count
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.MessageBase.History">
+            <summary>
+            History
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.MessageBase.MessageData">
+            <summary>
+            Message Data
+            <para>
+            Note: if you do not need unique keys or fast lookups, this could be <c><![CDATA[List<KeyValuePair>]]></c>
+            </para>
+            <para>
+            This could also be a more structured data structure, but that comes with additional complexity
+            </para>
+            </summary>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Models.MessageBase.IsValid(System.Collections.Generic.List{System.ComponentModel.DataAnnotations.ValidationResult}@)">
+            <summary>
+            Check validity of message
+            </summary>
+            <param name="validationErrors">Validation Errors</param>
+            <returns>True if ok</returns>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Models.MessageBase.SubIdentityTryGet(System.String@)">
+            <summary>
+            Get the last Sub-Message Id
+            </summary>
+            <param name="subMessageId">Latest Sub-Message-Id</param>
+            <returns>True if so</returns>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Models.MessageBase.ToString">
+            <summary>
+            To String
+            </summary>
+            <returns>JSON</returns>
+        </member>
+        <member name="T:StuartWilliams.ScatterGatherMunge.Lib.Models.MessageHistoryItem">
+            <summary>
+            Model: Message History Item
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.MessageHistoryItem.Stamp">
+            <summary>
+            When: UTC DateTime Stamp
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.MessageHistoryItem.Kind">
+            <summary>
+            Why: State
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.MessageHistoryItem.Text">
+            <summary>
+            How: Reason Message
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.MessageHistoryItem.Id">
+            <summary>
+            What: SubId (for clone)
+            </summary>
+        </member>
+        <member name="T:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration">
+            <summary>
+            Configuration: One RabbitMQ Instance
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.Localhost_Default">
+            <summary>
+            Localhost
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.Username_Default">
+            <summary>
+            Username: guest
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.Password_Default">
+            <summary>
+            Password: guest
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.Port_Default">
+            <summary>
+            Port
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.SendSleep_Default">
+            <summary>
+            Send Sleep Time (ms)
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.Messages_To_Send">
+            <summary>
+            Messages to send
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.Message_Expiration_Default">
+            <summary>
+            Message Property: Expiration 600 minutes
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.Message_DeliveryMode_Default">
+            <summary>
+            Message Property: Persistant Message
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.Message_Persistent_Default">
+            <summary>
+            Message Property: Persistant Message
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.Queue_Durable_Default">
+            <summary>
+            Queue Property: Persistant Queue
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.Queue_Exclusive_Default">
+            <summary>
+            Queue Property: Not exclusive
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.Queue_AutoDelete_Default">
+            <summary>
+            Queue Property: Do not auto delete
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.Host">
+            <summary>
+            Host (default: <c>Localhost_Default</c>)
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.Port">
+            <summary>
+            Port: (default: <c>Port_Default</c>)
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.Username">
+            Username: (default: <c>Username_Default</c>)
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.Password">
+            Password: (default: <c>Password_Default</c>)
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.MessageExpiration">
+            <summary>
+            MessageExpiration (default: <c>Message_Expiration_Default</c>)
+            <para>This is a long in milliseconds (ms) as a string</para>
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.MessageDeliveryMode">
+            <summary>
+            MessageDeliveryMode (default: <c>Message_DeliveryMode_Default</c>)
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.MessagePersistent">
+            <summary>
+            MessagePersistent (default: <c>Message_Persistent_Default</c> aka true)
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.QueueDurable">
+            <summary>
+            QueueDurable (default: <c>Queue_Durable_Default</c> aka true)
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.QueueExclusive">
+            <summary>
+              (default: <c>Queue_Exclusive_Default</c>) aka false
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.QueueAutoDelete">
+            <summary>
+            QueueAutoDelete (default: <c>Queue_AutoDelete_Default</c> aka false
+            </summary>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.SetProperty(System.String,System.String)">
+            <summary>
+            Set Property
+            </summary>
+            <param name="key">(sic)</param>
+            <param name="value">(sic)</param>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.CreateDefault">
+            <summary>
+            Create Default Configuration
+            </summary>
+            <returns>RabbitMqConfiguration</returns>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.ToString">
+            <summary>
+            Debugging string
+            </summary>
+            <returns>Debugging String</returns>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration.ToJson">
+            <summary>
+            To JSON
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqInstanceConfiguration">
+            <summary>
+            Configuration: Specific Queue
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqInstanceConfiguration.ExchangeName_Default">
+            <summary>
+            Quick Name: Exchange
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqInstanceConfiguration.QueueName_Default">
+            <summary>
+            Quick Name: Queue
+            </summary>
+        </member>
+        <member name="F:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqInstanceConfiguration.RoutingKey_Default">
+            <summary>
+            Quick Name: Routing Key
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqInstanceConfiguration.ExchangeName">
+            <summary>
+            (optional) Exchange
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqInstanceConfiguration.QueueName">
+            <summary>
+            (required) Queue Name
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqInstanceConfiguration.RoutingKey">
+            <summary>
+            (optional) Route
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqInstanceConfiguration.IsValid">
+            <summary>
+            Is this valid?
+            </summary>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqInstanceConfiguration.SetProperty(System.String,System.String)">
+            <summary>
+            Set Property
+            </summary>
+            <param name="key">(sic)</param>
+            <param name="value">(sic)</param>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqInstanceConfiguration.ToString">
+            <summary>
+            To String
+            </summary>
+            <returns>Debug String</returns>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqInstanceConfiguration.ToJson">
+            <summary>
+            To JSON
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:StuartWilliams.ScatterGatherMunge.Lib.Utilities.RabbitMq">
+            <summary>
+            Utility: Useful RabbitMQ utilities
+            </summary>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Utilities.RabbitMq.RabbitMQMakeConnectionFactory(System.String,System.Int32,System.String,System.String)">
+            <summary>
+            Make an RabbitMQ connection factory 
+            </summary>
+            <param name="hostname">(sic)</param>
+            <param name="port">Use <c>RabbitMq_Port_Default</c></param>
+            <param name="username">(sic)</param>
+            <param name="password">(sic)</param>
+            <returns>ConnectionFactory</returns>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Utilities.RabbitMq.MessageBasicPropertiesPersistant(RabbitMQ.Client.IModel,System.Byte,System.Boolean,System.String)">
+            <summary>
+            Message Properties: Make some as persistant w. long expirations
+            </summary>
+            <param name="model">IModel</param>
+            <param name="deliveryMode">Enum</param>
+            <param name="persistent">bool</param>
+            <param name="expiration">ms as string</param>
+            <returns>IBasicProperties</returns>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Utilities.RabbitMq.SetupDurableQueue(RabbitMQ.Client.IModel,StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration,StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqInstanceConfiguration)">
+            <summary>
+            Set up Durable Queue
+            </summary>
+            <param name="model">IModel</param>
+            <param name="engineConfiguration">RabbitMqEngineConfiguration</param>
+            <param name="queueConfiguration">RabbitMqInstanceConfiguration</param>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Utilities.RabbitMq.Publish(RabbitMQ.Client.IModel,System.String,System.String,RabbitMQ.Client.IBasicProperties,System.Byte[])">
+            <summary>
+            Message: Publish to queue and exchange set up by <c>SetupDurableQueue</c>
+            </summary>
+            <param name="model">IModel</param>
+            <param name="exchangeName">(sic)</param>
+            <param name="routingKey">(sic)</param>
+            <param name="messageProperties">IBasicProperties</param>
+            <param name="body">bytes</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,17 @@
+{
+  "RabbitMq-Ui": "http://localhost:8080/#/",
+  "RabbitMq-Host": "localhost",
+  "RabbitMq-Port": 5672,
+  "RabbitMq-Username": "guest",
+  "RabbitMq-Password": "guest",
+  "RabbitMq-ExchangeName": "myExchange",
+  "RabbitMq-QueueName": "myQueue",
+  "RabbitMq-RoutingKey": "myRoutingKey",
+  "RabbitMq-MessageExpiration": "36000000",
+  "RabbitMq-MessageDeliveryMode": 2,
+  "RabbitMq-MessagePersistent": true,
+  "RabbitMq-QueueDurable": true,
+  "RabbitMq-QueueExclusive": false,
+  "RabbitMq-QueueAutoDelete": false
+
+}
