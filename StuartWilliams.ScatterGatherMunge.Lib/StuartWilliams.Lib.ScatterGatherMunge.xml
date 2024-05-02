@@ -175,6 +175,20 @@
             Bad message, rejected
             </summary>
         </member>
+        <member name="T:StuartWilliams.ScatterGatherMunge.Lib.Extensions.AssembyInfoHelper">
+            <summary>
+            Helper: Assembly Info
+            <para>Translates the <c>CustomAttributeData</c> to a usable string value</para>
+            </summary>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Extensions.AssembyInfoHelper.TryParse(System.Reflection.CustomAttributeData,System.String@)">
+            <summary>
+            Try Parse a <c>System.Reflection.CustomAttributeData</c> into a string
+            </summary>
+            <param name="attribute">(this)</param>
+            <param name="s">Strng to parse into</param>
+            <returns>True if success</returns>
+        </member>
         <member name="T:StuartWilliams.ScatterGatherMunge.Lib.Extensions.PropertyHelper`1">
             <summary>
             Used to Get Property Info
@@ -241,6 +255,54 @@
             Delete all message in a queue (Purge)
             </summary>
             <param name="queueConfiguration">RabbitMqInstanceConfiguration</param>
+        </member>
+        <member name="T:StuartWilliams.ScatterGatherMunge.Lib.Models.BlitzAssemblyVersionMetadata">
+            <summary>
+            Custom Metadata For All Blitzkireg Software Micro-Service
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.BlitzAssemblyVersionMetadata.Copyright">
+            <summary>
+            Copyright
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.BlitzAssemblyVersionMetadata.Company">
+            <summary>
+            Company
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.BlitzAssemblyVersionMetadata.Description">
+            <summary>
+            Description
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.BlitzAssemblyVersionMetadata.SemanticVersion">
+            <summary>
+            Semantic Version <para>See: semver.org</para>
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.BlitzAssemblyVersionMetadata.FileVersion">
+            <summary>
+            File Version
+            </summary>
+        </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.BlitzAssemblyVersionMetadata.Product">
+            <summary>
+            Product
+            </summary>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Models.BlitzAssemblyVersionMetadata.PropertySet(System.String,System.String)">
+            <summary>
+            Property Set
+            </summary>
+            <param name="name">(sic)</param>
+            <param name="value">(sic)</param>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Models.BlitzAssemblyVersionMetadata.ToString">
+            <summary>
+            Version String
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:StuartWilliams.ScatterGatherMunge.Lib.Models.MessageBase">
             <summary>

@@ -49,6 +49,7 @@
 	<ItemGroup>
 		<Content Remove="C:\Users\spook\.nuget\packages\blitzkriegsoftware.securerandomlibrary\1.0.9\contentFiles\any\netstandard2.1\BlitzkriegSoftware.SecureRandomLibrary.md" />
 		<Content Remove="C:\Users\spook\.nuget\packages\blitzkriegsoftware.securerandomlibrary\1.0.9\contentFiles\any\netstandard2.1\BlitzkriegSoftware.SecureRandomLibrary.xml" />
+		<Content Remove="C:\Users\spook\.nuget\packages\blitzkriegsoftware.securerandomlibrary\1.0.9\contentFiles\any\netstandard2.1\favicon_32x32.ico" />
 	</ItemGroup>
 
 	<ItemGroup>

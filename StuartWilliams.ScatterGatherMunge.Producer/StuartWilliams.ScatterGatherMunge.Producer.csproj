@@ -3,9 +3,66 @@
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net8.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
+		<LangVersion>11.0</LangVersion>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<ApplicationIcon>Circle-Me.ico</ApplicationIcon>
 	</PropertyGroup>
+
+	<PropertyGroup>
+		<Version>1.0.2</Version>
+		<InformationalVersion>1.0.2</InformationalVersion>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Title>StuartWilliams.Lib.ScatterGatherMunge</Title>
+		<Authors>Stuart Williams</Authors>
+		<Description>A Library to support SGM</Description>
+		<Copyright>(c) 2024 Stuart Williams</Copyright>
+		<PackageProjectUrl>https://github.com/BlitzkriegSoftware/ScatterGatherMunge</PackageProjectUrl>
+		<PackageIcon>Circle-Me.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/BlitzkriegSoftware/ScatterGatherMunge</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>Scatter; Gather; Munge</PackageTags>
+		<PackageReleaseNotes>1.x.x Initial Version</PackageReleaseNotes>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DebugType>embedded</DebugType>
+		<IsTrimmable>False</IsTrimmable>
+		<WarningLevel>7</WarningLevel>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DebugType>embedded</DebugType>
+		<IsTrimmable>False</IsTrimmable>
+		<WarningLevel>7</WarningLevel>
+	</PropertyGroup>
+	
+	<ItemGroup>
+	  <None Remove="Circle-Me.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Circle-Me.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\Circle-Me.png" Link="Circle-Me.png">
+	    <PackagePath>\</PackagePath>
+	    <Pack>True</Pack>
+	  </None>
+	  <None Include="..\LICENSE" Link="LICENSE">
+	    <PackagePath>\</PackagePath>
+	    <Pack>True</Pack>
+	  </None>
+	  <None Include="..\README.md" Link="README.md">
+	    <PackagePath>\</PackagePath>
+	    <Pack>True</Pack>
+	  </None>
+	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\StuartWilliams.ScatterGatherMunge.Lib\StuartWilliams.ScatterGatherMunge.Lib.csproj" />

@@ -1,4 +1,5 @@
 ﻿using CommandLine;
+using System.Collections.Generic;
 
 namespace StuartWilliams.ScatterGatherMunge.Producer
 {
@@ -28,12 +29,12 @@ namespace StuartWilliams.ScatterGatherMunge.Producer
         /// Path to Configuration JSON file
         /// </summary>
         [Option('c', "JSON Config File", Required = true, HelpText = "Path to JSON Configuration File")]
-        public string? ConfigurationFilename {  get; set; }
+        public string ConfigurationFilename {  get; set; }
 
         /// <summary>
         /// Configuration Dictionary
         /// </summary>
-        public Dictionary<string, object> Configuration { get; set; } = [];
+        public Dictionary<string, object> Configuration { get; set; } = new();
 
     }
 
