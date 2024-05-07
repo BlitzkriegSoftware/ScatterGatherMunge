@@ -162,6 +162,20 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Models
         }
 
         /// <summary>
+        /// Is Valid
+        /// </summary>
+        public bool IsValid
+        {
+            get
+            {
+                return !string.IsNullOrWhiteSpace(Host) &&
+                       (Port > 0)
+                       ;
+            }
+        }
+
+
+        /// <summary>
         /// Debugging string
         /// </summary>
         /// <returns>Debugging String</returns>

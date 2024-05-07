@@ -87,18 +87,18 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Utilities
         /// <param name="body">bytes</param>
         public static void Publish(IModel model, string exchangeName, string routingKey, IBasicProperties messageProperties, byte[] body)
         {
-            if (model == null) throw new ArgumentNullException(nameof(model));
+            ArgumentNullException.ThrowIfNull(model);
             if (string.IsNullOrWhiteSpace(exchangeName)) throw new ArgumentNullException(nameof(exchangeName));
             if (string.IsNullOrWhiteSpace(routingKey)) throw new ArgumentNullException(nameof(routingKey));
             if (messageProperties == null) throw new ArgumentNullException(nameof(messageProperties));
             if ((body == null) || (body.Length <= 0)) throw new ArgumentNullException(nameof(body));
 
             model.BasicPublish(
-                               exchange: exchangeName,
-                               routingKey: routingKey,
-                               basicProperties: messageProperties,
-                               body: body
-                           );
+                exchange: exchangeName,
+                routingKey: routingKey,
+                basicProperties: messageProperties,
+                body: body
+            );
         }
 
     }

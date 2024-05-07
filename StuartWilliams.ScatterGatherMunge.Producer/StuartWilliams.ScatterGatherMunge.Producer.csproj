@@ -46,6 +46,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Content Include="..\demoConfig.json" Link="demoConfig.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	  <Content Include="Circle-Me.ico" />
 	</ItemGroup>
 

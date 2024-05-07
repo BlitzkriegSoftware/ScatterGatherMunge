@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "StuartWilliams.ScatterGatherMunge.Producer": {
+      "commandName": "Project",
+      "commandLineArgs": "-c .\\demoConfig.json\r\n-m 50\r\n-v\r\n"
+    }
+  }
+}

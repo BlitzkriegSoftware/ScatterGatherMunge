@@ -60,9 +60,9 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Models
 
             switch (key.ToLowerInvariant())
             {
-                case "exchangename": this.ExchangeName = value; break;
-                case "queuename": this.QueueName = value; break;
-                case "routingkey": this.RoutingKey = value; break;
+                case "rabbitmq-exchangename": this.ExchangeName = value; break;
+                case "rabbitmq-queuename": this.QueueName = value; break;
+                case "rabbitmq-routingkey": this.RoutingKey = value; break;
             }
         }
 
