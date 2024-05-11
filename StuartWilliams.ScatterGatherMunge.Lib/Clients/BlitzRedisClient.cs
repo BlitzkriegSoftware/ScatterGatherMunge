@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace StuartWilliams.ScatterGatherMunge.Lib.Utilities
+namespace StuartWilliams.ScatterGatherMunge.Lib.Clients
 {
     /// <summary>
     /// Client: Blitzkrieg Software Redis
@@ -43,8 +43,8 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Utilities
         /// <param name="config">RedisConfiguration</param>
         public BlitzRedisClient(Models.RedisConfiguration config)
         {
-            this._config = config ?? throw new ArgumentNullException(nameof(config));
-            this._redisConnectMultiplexer = ConnectionMultiplexer.Connect($"{this._config.ConnectionString}");
+            _config = config ?? throw new ArgumentNullException(nameof(config));
+            _redisConnectMultiplexer = ConnectionMultiplexer.Connect($"{_config.ConnectionString}");
         }
 
         #endregion
@@ -58,7 +58,7 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Utilities
         {
             get
             {
-                return this._config;
+                return _config;
             }
         }
 
@@ -69,7 +69,7 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Utilities
         {
             get
             {
-                return this._redisConnectMultiplexer;
+                return _redisConnectMultiplexer;
             }
         }
 
@@ -83,7 +83,7 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Utilities
         /// <param name="dbIndex">(optional) index, default <c>RedisDefaultDb</c></param>
         public void Set(string key, string value, int dbIndex = RedisDefaultDb)
         {
-            IDatabase db = this._redisConnectMultiplexer.GetDatabase(dbIndex);
+            IDatabase db = _redisConnectMultiplexer.GetDatabase(dbIndex);
             db.StringSet(key, value);
         }
 
@@ -96,7 +96,7 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Utilities
         /// <param name="dbIndex">(optional) index, default <c>RedisDefaultDb</c></param>
         public void Set<T>(string key, T thing, int dbIndex = RedisDefaultDb) where T : new()
         {
-            IDatabase db = this._redisConnectMultiplexer.GetDatabase(dbIndex);
+            IDatabase db = _redisConnectMultiplexer.GetDatabase(dbIndex);
             var json = JsonConvert.SerializeObject(thing);
             db.StringSet(key, json);
         }
@@ -109,7 +109,7 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Utilities
         /// <returns>value</returns>
         public string Get(string key, int dbIndex = RedisDefaultDb)
         {
-            IDatabase db = this._redisConnectMultiplexer.GetDatabase(dbIndex);
+            IDatabase db = _redisConnectMultiplexer.GetDatabase(dbIndex);
             return db.StringGet(key);
         }
 
@@ -122,7 +122,7 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Utilities
         /// <returns>instance of T</returns>
         public T Get<T>(string key, int dbIndex = RedisDefaultDb)
         {
-            IDatabase db = this._redisConnectMultiplexer.GetDatabase(dbIndex);
+            IDatabase db = _redisConnectMultiplexer.GetDatabase(dbIndex);
             var json = db.StringGet(key);
             T value = JsonConvert.DeserializeObject<T>(json);
             return value;
@@ -135,7 +135,7 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Utilities
         /// <param name="dbIndex">(optional) index, default <c>RedisDefaultDb</c></param>
         public bool Delete(string key, int dbIndex = RedisDefaultDb)
         {
-            IDatabase db = this._redisConnectMultiplexer.GetDatabase(dbIndex);
+            IDatabase db = _redisConnectMultiplexer.GetDatabase(dbIndex);
             return db.KeyDelete(key);
         }
 
@@ -147,8 +147,8 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Utilities
         /// <param name="dbIndex">(optional) index, default <c>RedisDefaultDb</c></param>
         public void ClearAll(int serverIndex = RedisDefaultServer, int dbIndex = RedisDefaultDb)
         {
-            var endpoint = this._redisConnectMultiplexer.GetEndPoints()[serverIndex];
-            var redisServer = this._redisConnectMultiplexer.GetServer(endpoint);
+            var endpoint = _redisConnectMultiplexer.GetEndPoints()[serverIndex];
+            var redisServer = _redisConnectMultiplexer.GetServer(endpoint);
             redisServer.FlushDatabase(dbIndex);
         }
 
@@ -184,7 +184,7 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Utilities
         /// <returns>List or empty</returns>
         public RedisKey[] MatchedKeys(string keyMatchExpression, int dbIndex = RedisDefaultDb)
         {
-            IDatabase db = this._redisConnectMultiplexer.GetDatabase(dbIndex);
+            IDatabase db = _redisConnectMultiplexer.GetDatabase(dbIndex);
             var matches = (RedisKey[])db.Execute("KEYS", keyMatchExpression);
             return matches;
         }
@@ -222,9 +222,9 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Utilities
         public List<KeyValuePair<string, string>> MatchedKeyValues(string keyMatchExpression, int dbIndex = RedisDefaultDb)
         {
             var d = new List<KeyValuePair<string, string>>();
-            IDatabase db = this._redisConnectMultiplexer.GetDatabase(dbIndex);
-            var matches = this.MatchedKeys(keyMatchExpression, dbIndex);
-            if ((matches != null) && (matches.Length > 0))
+            IDatabase db = _redisConnectMultiplexer.GetDatabase(dbIndex);
+            var matches = MatchedKeys(keyMatchExpression, dbIndex);
+            if (matches != null && matches.Length > 0)
             {
                 foreach (var key in matches)
                 {
@@ -268,10 +268,10 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Utilities
         public long ClearMatching(string keyMatchExpression, int dbIndex = RedisDefaultDb)
         {
             long deleted = 0;
-            var matches = this.MatchedKeys(keyMatchExpression, dbIndex);
-            if ((matches != null) && (matches.Length > 0))
+            var matches = MatchedKeys(keyMatchExpression, dbIndex);
+            if (matches != null && matches.Length > 0)
             {
-                IDatabase db = this._redisConnectMultiplexer.GetDatabase(dbIndex);
+                IDatabase db = _redisConnectMultiplexer.GetDatabase(dbIndex);
                 deleted = db.KeyDelete(matches);
             }
             return deleted;
@@ -279,7 +279,7 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Utilities
 
         #region "IDisposable"
 
-        private bool disposed; // to detect redundant calls
+        private bool _disposed; // to detect redundant calls
 
         /// <summary>
         /// Dispose
@@ -287,14 +287,14 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Utilities
         /// <param name="disposing"></param>
         protected virtual void Dispose(bool disposing)
         {
-            if (!this.disposed)
+            if (!_disposed)
             {
                 if (disposing)
                 {
-                    this._redisConnectMultiplexer?.Dispose();
-                    this._redisConnectMultiplexer = null;
+                    _redisConnectMultiplexer?.Dispose();
+                    _redisConnectMultiplexer = null;
                 }
-                this.disposed = true;
+                _disposed = true;
             }
         }
 
@@ -303,7 +303,7 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Utilities
         /// </summary>
         public void Dispose()
         {
-            this.Dispose(true);
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
         #endregion

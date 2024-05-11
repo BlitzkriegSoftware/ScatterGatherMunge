@@ -1,5 +1,7 @@
 ﻿using CommandLine;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.Design;
 
 namespace StuartWilliams.ScatterGatherMunge.Producer
 {
@@ -24,6 +26,12 @@ namespace StuartWilliams.ScatterGatherMunge.Producer
         /// </summary>
         [Option('m', "Message Count", Required = false, HelpText = "How many messages to generate", Default = MessageCount_Default)]
         public int MessageCount { get; set; } = MessageCount_Default;
+
+        /// <summary>
+        /// Purge Existing Messages
+        /// </summary>
+        [Option('p',"Purge", Required =false, HelpText = "Purge existing messages")]
+        public bool PurgeExisting {  get; set; } = false;
 
         /// <summary>
         /// Path to Configuration JSON file

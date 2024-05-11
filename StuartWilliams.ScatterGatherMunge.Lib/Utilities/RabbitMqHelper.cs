@@ -6,7 +6,7 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Utilities
     /// <summary>
     /// Utility: Useful RabbitMQ utilities
     /// </summary>
-    public static class RabbitMq
+    public static class RabbitMqHelper
     {
         /// <summary>
         /// Make an RabbitMQ connection factory 
@@ -54,8 +54,8 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Utilities
         /// </summary>
         /// <param name="model">IModel</param>
         /// <param name="engineConfiguration">RabbitMqEngineConfiguration</param>
-        /// <param name="queueConfiguration">RabbitMqInstanceConfiguration</param>
-        public static void SetupDurableQueue(IModel model, Models.RabbitMqEngineConfiguration engineConfiguration, Models.RabbitMqInstanceConfiguration queueConfiguration)
+        /// <param name="queueConfiguration">RabbitMqQueueConfiguration</param>
+        public static void SetupDurableQueue(IModel model, Models.RabbitMqEngineConfiguration engineConfiguration, Models.RabbitMqQueueConfiguration queueConfiguration)
         {
             if (model == null) throw new ArgumentNullException(nameof(model));
             if (engineConfiguration == null) throw new ArgumentNullException(nameof(engineConfiguration));

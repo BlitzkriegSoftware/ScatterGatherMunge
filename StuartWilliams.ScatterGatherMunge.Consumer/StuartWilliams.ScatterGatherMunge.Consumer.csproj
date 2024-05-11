@@ -52,6 +52,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Include="..\.editorconfig" Link=".editorconfig" />
 	  <None Include="..\Circle-Me.png" Link="Circle-Me.png">
 	    <PackagePath>\</PackagePath>
 	    <Pack>True</Pack>

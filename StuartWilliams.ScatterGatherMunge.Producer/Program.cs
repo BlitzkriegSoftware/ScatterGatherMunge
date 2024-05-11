@@ -1,14 +1,25 @@
 ﻿using CommandLine;
-using StuartWilliams.ScatterGatherMunge.Lib.Models;
-using StuartWilliams.ScatterGatherMunge.Lib.Extensions;
-using System;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using StuartWilliams.ScatterGatherMunge.Lib.Clients;
+using StuartWilliams.ScatterGatherMunge.Lib.Extensions;
+using StuartWilliams.ScatterGatherMunge.Lib.Models;
+using StuartWilliams.ScatterGatherMunge.Lib.Utilities;
+using System;
 using System.Collections.Generic;
 
 namespace StuartWilliams.ScatterGatherMunge.Producer
 {
     internal class Program
     {
+        #region "Fields"
+        static ILogger _logger;
+        static IConfiguration _config;
+        static StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration _rabbitMqEngineConfiguration { get; set; } = new();
+        static StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqQueueConfiguration _rabbitMqQueueConfiguration { get; set; } = new();
+        #endregion
+
         static void Main(string[] args)
         {
 
@@ -27,27 +38,52 @@ namespace StuartWilliams.ScatterGatherMunge.Producer
                        }
 
                        var json = System.IO.File.ReadAllText( o.ConfigurationFilename );
-                       var data = JsonConvert.DeserializeObject<Dictionary<string, string>>(json); 
+                       var data = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
 
-                       foreach(var key in data.Keys )
+                       var configurationBuilder = new ConfigurationBuilder();
+                        configurationBuilder.AddInMemoryCollection(data);
+                       _config = configurationBuilder.Build();
+
+                       _rabbitMqEngineConfiguration = RabbitMqEngineConfiguration.CreateDefault();
+                       _rabbitMqQueueConfiguration = RabbitMqQueueConfiguration.CreateDefault();
+
+                       foreach (var key in data.Keys)
                        {
-                           RabbitMqEngineConfiguration.SetProperty(key, data[key].ToString());
-                           RabbitMqInstanceConfiguration.SetProperty(key, data[key].ToString());
+                           _rabbitMqEngineConfiguration.SetProperty(key, data[key].ToString());
+                           _rabbitMqQueueConfiguration.SetProperty(key, data[key].ToString());
                        }
 
-                       if(!RabbitMqEngineConfiguration.IsValid)
+                       if(!_rabbitMqEngineConfiguration.IsValid)
                        {
                            Console.Error.WriteLine($"Invalid Configuration RabbitMq Engine");
                            Environment.Exit(3);
                        }
 
-                       if (!RabbitMqInstanceConfiguration.IsValid)
+                       if (!_rabbitMqQueueConfiguration.IsValid)
                        {
                            Console.Error.WriteLine($"Invalid Configuration RabbitMq Instance");
                            Environment.Exit(4);
                        }
 
+                       _logger = LogFactoryHelper.CreateLogger<Program>();
 
+                       var _client = new RabbitMQClient(_logger, _config);
+
+                       if (o.PurgeExisting)
+                       {
+                           _logger.LogInformation("Purging existing messages");
+                           _client.PurgeQueue(_rabbitMqQueueConfiguration);
+                       }
+                       else
+                       {
+                           _logger.LogInformation("Preserving existing messages");
+                       }
+
+                       for (int i = 0; i < o.MessageCount; i++)
+                       {
+                           var msg = StuartWilliams.ScatterGatherMunge.Lib.Utilities.MessageFactory.Make(null, StuartWilliams.ScatterGatherMunge.Lib.Utilities.MessageFactory.MakeHistory(null)).ToJson();
+                           _client.Enqueue<string>(msg, _rabbitMqQueueConfiguration);
+                       }
 
                    })
                    .WithNotParsed(errors =>
@@ -60,9 +96,6 @@ namespace StuartWilliams.ScatterGatherMunge.Producer
                    });
 
         }
-
-        static StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration RabbitMqEngineConfiguration { get; } = new();
-        static StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqInstanceConfiguration RabbitMqInstanceConfiguration { get; } = new();
 
         #region "Assembly Version"
 

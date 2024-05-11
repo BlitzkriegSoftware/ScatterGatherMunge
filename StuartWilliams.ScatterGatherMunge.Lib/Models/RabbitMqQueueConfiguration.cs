@@ -6,7 +6,7 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Models
     /// <summary>
     /// Configuration: Specific Queue
     /// </summary>
-    public class RabbitMqInstanceConfiguration
+    public class RabbitMqQueueConfiguration
     {
         /// <summary>
         /// Quick Name: Exchange
@@ -26,17 +26,17 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Models
         /// <summary>
         /// (optional) Exchange
         /// </summary>
-        public string ExchangeName { get; set; } = RabbitMqInstanceConfiguration.ExchangeName_Default;
+        public string ExchangeName { get; set; } = RabbitMqQueueConfiguration.ExchangeName_Default;
 
         /// <summary>
         /// (required) Queue Name
         /// </summary>
-        public string QueueName { get; set; } = RabbitMqInstanceConfiguration.QueueName_Default;
+        public string QueueName { get; set; } = RabbitMqQueueConfiguration.QueueName_Default;
 
         /// <summary>
         /// (optional) Route
         /// </summary>
-        public string RoutingKey { get; set; } = RabbitMqInstanceConfiguration.RoutingKey_Default;
+        public string RoutingKey { get; set; } = RabbitMqQueueConfiguration.RoutingKey_Default;
 
         /// <summary>
         /// Is this valid?
@@ -47,6 +47,19 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Models
             {
                 return !string.IsNullOrWhiteSpace(this.QueueName);
             }
+        }
+
+        /// <summary>
+        /// Create Default Configuration
+        /// </summary>
+        /// <returns>RabbitMqQueueConfiguration</returns>
+        public static RabbitMqQueueConfiguration CreateDefault() {
+            return new RabbitMqQueueConfiguration()
+            {
+                ExchangeName = ExchangeName_Default,
+                QueueName = QueueName_Default,
+                RoutingKey = RoutingKey_Default
+            };
         }
 
         /// <summary>

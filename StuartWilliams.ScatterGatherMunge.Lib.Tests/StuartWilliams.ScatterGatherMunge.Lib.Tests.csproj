@@ -30,4 +30,12 @@
 		<Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <EditorConfigFiles Remove="C:\code\ScatterGatherMunge\.editorconfig" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="C:\code\ScatterGatherMunge\.editorconfig" />
+	</ItemGroup>
+
 </Project>

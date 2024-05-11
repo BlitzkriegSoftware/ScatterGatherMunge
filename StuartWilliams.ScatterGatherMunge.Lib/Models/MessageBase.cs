@@ -158,5 +158,14 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Models
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
+        /// <summary>
+        /// To JSON
+        /// </summary>
+        /// <returns>string</returns>
+        public string ToJson()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+
     }
 }

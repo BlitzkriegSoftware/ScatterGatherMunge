@@ -65,6 +65,7 @@
 	    <PackagePath>\</PackagePath>
 	    <Pack>True</Pack>
 	  </None>
+	  <None Include="C:\code\ScatterGatherMunge\.editorconfig" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -73,6 +74,10 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommandLineParser" Version="2.9.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EditorConfigFiles Remove="C:\code\ScatterGatherMunge\.editorconfig" />
 	</ItemGroup>
 
 </Project>

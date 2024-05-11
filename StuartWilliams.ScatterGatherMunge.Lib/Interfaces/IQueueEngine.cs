@@ -16,7 +16,7 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Interfaces
         /// <typeparam name="T">Type</typeparam>
         /// <param name="message">message</param>
         /// <param name="queueConfiguration">(sic)</param>
-        void Enqueue<T>(T message, Models.RabbitMqInstanceConfiguration queueConfiguration);
+        void Enqueue<T>(T message, Models.RabbitMqQueueConfiguration queueConfiguration);
 
         /// <summary>
         /// Get a message of type <c>IModel</c>
@@ -24,7 +24,7 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Interfaces
         /// <param name="queueConfiguration">(sic)</param>
         /// <param name="handler">Handler to pass called back for each message</param>
         /// <returns>IModel</returns>
-        void SetupDequeueEvent(Models.RabbitMqInstanceConfiguration queueConfiguration, QueueMessageHandler handler);
+        void SetupDequeueEvent(Models.RabbitMqQueueConfiguration queueConfiguration, QueueMessageHandler handler);
 
         /// <summary>
         /// Ack/Nack/Reject Message (must be called by the <c>QueueMessageHandler</c>
@@ -37,8 +37,8 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Interfaces
         /// <summary>
         /// Delete all message in a queue (Purge)
         /// </summary>
-        /// <param name="queueConfiguration">RabbitMqInstanceConfiguration</param>
-        void PurgeQueue(Models.RabbitMqInstanceConfiguration queueConfiguration);
+        /// <param name="queueConfiguration">RabbitMqQueueConfiguration</param>
+        void PurgeQueue(Models.RabbitMqQueueConfiguration queueConfiguration);
 
     }
 

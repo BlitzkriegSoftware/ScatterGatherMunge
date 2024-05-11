@@ -24,7 +24,7 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Tests
         [TestMethod]
         public void PropertyHelper_1()
         {
-            var p = Extensions.PropertyHelper<Models.TestMessage>.GetProperty(p => p.RetryCount);
+            var p = Extensions.PropertyHelper<Models.MessageBase>.GetProperty(p => p.RetryCount);
             Assert.IsNotNull(p);
             var isd = Attribute.IsDefined(p, typeof(Attributes.MessageEnrichmentAttribute));
             Assert.IsTrue(isd);

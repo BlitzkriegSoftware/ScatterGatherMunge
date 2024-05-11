@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Web;
 using BlitzkriegSoftware.MsTest;
+using StuartWilliams.ScatterGatherMunge.Lib.Utilities;
 
 namespace StuartWilliams.ScatterGatherMunge.Lib.Tests
 {
@@ -26,19 +27,19 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Tests
         [TestMethod]
         public void TestMessage_1()
         {
-            var model = Helpers.MessageFactory.Make(id: null, history: null);
+            var model = MessageFactory.Make(id: null, history: null);
             Assert.IsNotNull(model);
-            TestJsonSerializationHelper.AssertJsonSerialization<Models.TestMessage>(_testcontext, model);
+            TestJsonSerializationHelper.AssertJsonSerialization<Models.MessageBase>(_testcontext, model);
             Assert.IsTrue(model.IsValid(out _));
         }
 
         [TestMethod]
         public void TestMessage_2()
         {
-            var model = Helpers.MessageFactory.Make(id: null, history: null);
+            var model = MessageFactory.Make(id: null, history: null);
             Assert.IsNotNull(model);
             model.MessageId = null;
-            TestJsonSerializationHelper.AssertJsonSerialization<Models.TestMessage>(_testcontext, model);
+            TestJsonSerializationHelper.AssertJsonSerialization<Models.MessageBase>(_testcontext, model);
             Assert.IsFalse(model.IsValid(out List<System.ComponentModel.DataAnnotations.ValidationResult> validationErrors));
             Assert.IsTrue(validationErrors.Count > 0);
         }
@@ -46,7 +47,7 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Tests
         [TestMethod]
         public void TestMessage_2a()
         {
-            var model = Helpers.MessageFactory.Make(id: null, history: null);
+            var model = MessageFactory.Make(id: null, history: null);
             Assert.IsNotNull(model);
             model.History = [];
             Assert.IsTrue(model.IsValid(out _));
@@ -55,7 +56,7 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Tests
         [TestMethod]
         public void TestMessage_2b()
         {
-            var model = Helpers.MessageFactory.Make(id: null, history: null);
+            var model = MessageFactory.Make(id: null, history: null);
             Assert.IsNotNull(model);
             model.History =
             [
@@ -81,7 +82,7 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Tests
         public void TestMessage_2c()
         {
             var id = Guid.NewGuid().ToString();
-            var model = Helpers.MessageFactory.Make(id: null, history: null);
+            var model = MessageFactory.Make(id: null, history: null);
             Assert.IsNotNull(model);
             model.History =
             [
@@ -124,7 +125,7 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Tests
         [TestMethod]
         public void TestMessage_2d()
         {
-            var model = Helpers.MessageFactory.Make(id: null, history: null);
+            var model = MessageFactory.Make(id: null, history: null);
             Assert.IsNotNull(model);
             model.History =
             [
@@ -160,10 +161,10 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Tests
         [TestMethod]
         public void TestMessage_3()
         {
-            var model = Helpers.MessageFactory.Make(id: null, history: null);
+            var model = MessageFactory.Make(id: null, history: null);
             Assert.IsNotNull(model);
             model.MessageData = null;
-            TestJsonSerializationHelper.AssertJsonSerialization<Models.TestMessage>(_testcontext, model);
+            TestJsonSerializationHelper.AssertJsonSerialization<Models.MessageBase>(_testcontext, model);
             Assert.IsFalse(model.IsValid(out List<System.ComponentModel.DataAnnotations.ValidationResult> validationErrors));
             Assert.IsTrue(validationErrors.Count > 0);
             bool errorFound = false;
@@ -180,10 +181,10 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Tests
         [TestMethod]
         public void TestMessage_3a()
         {
-            var model = Helpers.MessageFactory.Make(id: null, history: null);
+            var model = MessageFactory.Make(id: null, history: null);
             Assert.IsNotNull(model);
             model.MessageData = [];
-            TestJsonSerializationHelper.AssertJsonSerialization<Models.TestMessage>(_testcontext, model);
+            TestJsonSerializationHelper.AssertJsonSerialization<Models.MessageBase>(_testcontext, model);
             Assert.IsFalse(model.IsValid(out List<System.ComponentModel.DataAnnotations.ValidationResult> validationErrors));
             Assert.IsTrue(validationErrors.Count > 0);
             bool errorFound = false;
@@ -200,7 +201,7 @@ namespace StuartWilliams.ScatterGatherMunge.Lib.Tests
         [TestMethod]
         public void TestMessage_6()
         {
-            var model = Helpers.MessageFactory.Make(id: null, history: null);
+            var model = MessageFactory.Make(id: null, history: null);
             model.History.Add(new ScatterGatherMunge.Lib.Models.MessageHistoryItem()
             {
                 Kind = Enums.MessageFiniteStateKind.Requeued,
