@@ -539,6 +539,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Models.BlitzAssemblyVersionMetadata.ToJson">
+            <summary>
+            To JSON
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:StuartWilliams.ScatterGatherMunge.Lib.Models.MessageBase">
             <summary>
             Base: Message
@@ -635,6 +641,18 @@
             <summary>
             What: SubId (for clone)
             </summary>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Models.MessageHistoryItem.ToString">
+            <summary>
+            Debugging string
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Models.MessageHistoryItem.ToJson">
+            <summary>
+            To JSON
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:StuartWilliams.ScatterGatherMunge.Lib.Models.RabbitMqEngineConfiguration">
             <summary>
@@ -858,6 +876,12 @@
             Connection String
             </summary>
         </member>
+        <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.RedisConfiguration.DbIndexActive">
+            <summary>
+            Active DbIndex
+            <para>Avoid Zero (0)</para>
+            </summary>
+        </member>
         <member name="P:StuartWilliams.ScatterGatherMunge.Lib.Models.RedisConfiguration.IsValid">
             <summary>
             Is connection configuration valid
@@ -875,6 +899,12 @@
             Debug String
             </summary>
             <returns>Debug String</returns>
+        </member>
+        <member name="M:StuartWilliams.ScatterGatherMunge.Lib.Models.RedisConfiguration.ToJson">
+            <summary>
+            To JSON
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:StuartWilliams.ScatterGatherMunge.Lib.Utilities.LogFactoryHelper">
             <summary>

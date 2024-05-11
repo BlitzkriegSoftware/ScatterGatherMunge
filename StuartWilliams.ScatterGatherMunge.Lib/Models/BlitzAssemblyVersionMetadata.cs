@@ -1,4 +1,6 @@
-﻿namespace StuartWilliams.ScatterGatherMunge.Lib.Models
+﻿using Newtonsoft.Json;
+
+namespace StuartWilliams.ScatterGatherMunge.Lib.Models
 {
     /// <summary>
     /// Custom Metadata For All Blitzkireg Software Micro-Service
@@ -65,6 +67,14 @@
             return $"{this.Product} {this.Copyright} {this.SemanticVersion}\n{this.Description}\n";
         }
 
+        /// <summary>
+        /// To JSON
+        /// </summary>
+        /// <returns></returns>
+        public string ToJson()
+        {
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
+        }
     }
 
 }

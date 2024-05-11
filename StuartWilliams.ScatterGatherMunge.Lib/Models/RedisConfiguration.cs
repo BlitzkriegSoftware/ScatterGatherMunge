@@ -1,4 +1,6 @@
-﻿namespace StuartWilliams.ScatterGatherMunge.Lib.Models
+﻿using Newtonsoft.Json;
+
+namespace StuartWilliams.ScatterGatherMunge.Lib.Models
 {
 
     /// <summary>
@@ -16,6 +18,11 @@
         /// </summary>
         public string ConnectionString { get; set; } = RedisLocalHostDefault;
 
+        /// <summary>
+        /// Active DbIndex
+        /// <para>Avoid Zero (0)</para>
+        /// </summary>
+        public int DbIndexActive { get; set; } = 0;
 
         /// <summary>
         /// Is connection configuration valid
@@ -39,7 +46,8 @@
 
             switch (key.ToLowerInvariant())
             {
-                case "Redis-Connection": this.ConnectionString = value; break;
+                case "redis-connection": this.ConnectionString = value; break;
+                case "redis-dbindex": this.DbIndexActive = int.Parse(value); break;
             }
         }
 
@@ -49,7 +57,16 @@
         /// <returns>Debug String</returns>
         public override string ToString()
         {
-            return $"{this.ConnectionString}";
+            return $"{this.ConnectionString}; dbIndex: {this.DbIndexActive}";
+        }
+
+        /// <summary>
+        /// To JSON
+        /// </summary>
+        /// <returns></returns>
+        public string ToJson()
+        {
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
     }
